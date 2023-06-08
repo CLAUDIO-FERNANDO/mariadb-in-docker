@@ -10,8 +10,7 @@ Olá pessoal! Hoje, gostaria de compartilhar com vocês como configurar facilmen
 1. Primeiro, certifique-se de ter o Docker e o Docker Compose instalados em seu sistema. Se você ainda não os possui, pode encontrá-los em **https://www.docker.com/get-started**.
 2. Em seguida, crie um arquivo chamado **`docker-compose.yml`** em seu projeto e cole o seguinte código:
 
-https://github.com/CLAUDIO-FERNANDO/mariadb-in-docker.git
-
+https://github.com/CLAUDIO-FERNANDO/mariadb-in-docker/blob/main/docker-compose%20.yml
 
 Agora, vamos entender o que cada parte do código faz:
 - Definimos a versão do Docker Compose como **`3.1`**.
