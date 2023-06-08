@@ -1,0 +1,33 @@
+version: '3.1'
+
+networks:
+  net-maria:
+    driver: bridge  # Cria uma rede do tipo bridge chamada "net-maria" para permitir a comunicação entre os serviços
+
+volumes:
+  volume-maria:  # Cria um volume chamado "volume-maria" para persistir os dados do banco de dados
+
+services:
+  maria-db:
+    image: mariadb  # Usa a imagem do MariaDB
+    restart: always  # Reinicia o contêiner sempre que ele parar ou reiniciar o sistema
+    networks:
+      - net-maria  # Associa o serviço à rede "net-maria"
+    volumes:
+      - volume-maria:/var/lib/mysql  # Monta o volume "volume-maria" no diretório de dados do MariaDB
+    environment:
+      MYSQL_ROOT_PASSWORD: Pass@123456  # Define a senha do root do banco de dados
+      MYSQL_DATABASE: mydatabase  # Define o nome do banco de dados
+      MYSQL_USER: myuser  # Define o nome de usuário do banco de dados
+      MYSQL_PASSWORD: mypassword  # Define a senha do usuário do banco de dados
+
+  PHP-MY-ADMIN:
+    image: phpmyadmin/phpmyadmin  # Usa a imagem do phpMyAdmin
+    restart: always  # Reinicia o contêiner sempre que ele parar ou reiniciar o sistema
+    networks:
+      - net-maria  # Associa o serviço à rede "net-maria"
+    ports:
+      - 8080:80  # Mapeia a porta 8080 do host para a porta 80 do contêiner
+    environment:
+      PMA_HOST: maria-db  # Define o host do banco de dados (serviço maria-db)
+      MYSQL_ROOT_PASSWORD: Pass@123456  # Define a senha do root do banco de dados
